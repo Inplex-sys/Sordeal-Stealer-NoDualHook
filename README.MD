@@ -1,6 +1,6 @@
 
 <h1 align="center">
-  Sordeal Stealer v3
+  Sordeal Stealer v3 without Dual Hook
 </h1>
 
 
