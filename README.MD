@@ -24,12 +24,6 @@ one time for `config.webhook` and one time for `config.uwu` who is the dualhook 
 
 ##### [:gem: Premium](https://discord.gg/CaCv9qpa)
 
-
-
-<h2 align="center">
- https://discord.gg/sordeal
-</h2>
-
 **NOTE:** 
 - Disclaimer -
 I'm not responsible for any damages this software may cause after being acquired. 
@@ -45,7 +39,6 @@ This software was made for personal **education** and **sandbox testing**
 - [🔰・Features](#features)
 - [👁️・Features Explanation](#explanation)
 - [📝・Changelog](#changelog)
-- [🦜・Injection](https://github.com/SOrdeal/Sordeal-Injection)
 - [🕵️‍♂️・Credits](#forkedfrom)
 - [💼・Term](#terms)
 
