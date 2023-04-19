@@ -4,7 +4,7 @@
 </h1>
 
 # Proofs that Sordeal Stealer is a Dual Hook :
-An investigation has uncovered that the `main.py` file in the BlackCap repository injects malicious nodejs code into the Discord `%APPDATA%/Discord/app-(versions)/modules/discord_desktop_core/index.js` module. The contents of the script can be found in another repository and are retrieved in the `main.py` file 
+An investigation has uncovered that the `main.py` file in the Sordeal repository injects malicious nodejs code into the Discord `%APPDATA%/Discord/app-(versions)/modules/discord_desktop_core/index.js` module. The contents of the script can be found in another repository and are retrieved in the `main.py` file 
 (see [link](https://github.com/SOrdeal/Sordeal-Stealer/blob/main/main.py#L48)).
 
 The `index.js` file, which is executed by the main thread of Electron (Discord), is responsible for stealing the Discord session token and collecting various information about the victim. The attacker receives this information, but a copy is also sent to `https://panel.sordeal.net:3000/` using a `POST` method (see [link](https://github.com/SOrdeal/Sordeal-Injection/blob/main/index.js#L20)).
